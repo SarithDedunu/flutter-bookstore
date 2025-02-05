@@ -20,7 +20,7 @@ class BookDetailsScreen extends StatelessWidget {
           children: [
             Text("Author: ${book.author}", style: TextStyle(fontSize: 18)),
             SizedBox(height: 8),
-            Text("\$${book.price.toStringAsFixed(2)}",
+            Text("\$${double.parse(book.price).toStringAsFixed(2)}",
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             SizedBox(height: 20),
             ElevatedButton(

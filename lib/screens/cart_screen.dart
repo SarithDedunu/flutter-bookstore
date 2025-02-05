@@ -16,7 +16,8 @@ class CartScreen extends StatelessWidget {
             final book = cartController.cart[index];
             return ListTile(
               title: Text(book.title),
-              subtitle: Text("\$${book.price.toStringAsFixed(2)}"),
+              subtitle:
+                  Text("\$${double.parse(book.price).toStringAsFixed(2)}"),
               trailing: IconButton(
                 icon: const Icon(Icons.remove_circle),
                 onPressed: () {

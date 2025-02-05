@@ -1,12 +1,15 @@
 class Book {
-  final int id;
   final String title;
   final String author;
-  final double price;
+  final String price;
+  final String imagePath;
+  final String description;
 
-  Book(
-      {required this.id,
-      required this.title,
-      required this.author,
-      required this.price});
+  Book({
+    required this.title,
+    required this.author,
+    required this.price,
+    required this.imagePath,
+    required this.description,
+  });
 }
