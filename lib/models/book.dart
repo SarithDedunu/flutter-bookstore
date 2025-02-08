@@ -1,7 +1,7 @@
 class Book {
   final String title;
   final String author;
-  final String price;
+  final double price;
   final String imagePath;
   final String description;
 

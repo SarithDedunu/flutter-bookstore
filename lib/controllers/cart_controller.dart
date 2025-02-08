@@ -2,23 +2,33 @@ import 'package:get/get.dart';
 import '../models/book.dart';
 
 class CartController extends GetxController {
-  var cart = <Book>[].obs; // Observable list of books in the cart
+  // ✅ Change RxList<Book> to RxMap<Book, int> for quantity tracking
+  var cart = <Book, int>{}.obs;
 
   void addToCart(Book book) {
-    cart.add(book);
+    if (cart.containsKey(book)) {
+      cart[book] = cart[book]! + 1; // Increment quantity if already in cart
+    } else {
+      cart[book] = 1; // Add book with quantity 1 if new
+    }
   }
 
   void removeFromCart(Book book) {
-    cart.remove(book);
+    if (cart.containsKey(book)) {
+      if (cart[book]! > 1) {
+        cart[book] = cart[book]! - 1; // Reduce quantity
+      } else {
+        cart.remove(book); // Remove book if quantity becomes 0
+      }
+    }
   }
-
-  // Fix: Remove commas before parsing price to double
-  double get totalPrice => cart.fold(
-        0,
-        (sum, book) => sum + double.parse(book.price.replaceAll(',', '')),
-      );
 
   void clearCart() {
     cart.clear();
+  }
+
+  double get totalPrice {
+    return cart.entries
+        .fold(0, (sum, entry) => sum + (entry.key.price * entry.value));
   }
 }

@@ -52,13 +52,16 @@ class BookDetailsScreen extends StatelessWidget {
               style: TextStyle(fontSize: 16, color: Colors.black87),
             ),
             const Spacer(),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: onAddToCart, // ✅ **Calls function when pressed**
-                child: const Text("Add to Cart"),
+            Center(
+              // ✅ Ensures button is centered
+              child: SizedBox(
+                width: 150,
+                child: ElevatedButton(
+                  onPressed: onAddToCart,
+                  child: const Text("Add to Cart"),
+                ),
               ),
-            ),
+            )
           ],
         ),
       ),
