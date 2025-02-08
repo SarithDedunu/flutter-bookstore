@@ -1,8 +1,11 @@
+import 'package:bookstore_app/controllers/cart_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../models/book.dart';
 import '../widgets/book_widget.dart';
 
 class HomeScreen extends StatelessWidget {
+  final CartController cartController = Get.put(CartController());
   final List<Book> books = [
     Book(
       title: "The Alchemist",
@@ -79,10 +82,9 @@ class HomeScreen extends StatelessWidget {
         padding: const EdgeInsets.all(10.0),
         children: books
             .map<Widget>((book) => BookWidget(
-                  title: book.title,
-                  author: book.author,
-                  price: book.price,
-                  imagePath: book.imagePath,
+                  book: book,
+                  onAddToCart: () =>
+                      cartController.addToCart(book), // ✅ Pass function
                 ))
             .toList(),
       ),
